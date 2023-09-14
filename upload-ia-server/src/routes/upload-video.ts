@@ -13,7 +13,7 @@ const pump = promisify(pipeline)
 export async function uploadVideoRoute(app: FastifyInstance) {
   app.register(fastifyMultipart, {
     limits: {
-      fileSize: 1048576 * 25, //25mb
+      fileSize: 1_048_576 * 25, //25mb
     }
   })
   app.post('/videos', async (request, reply) => {
@@ -30,7 +30,8 @@ export async function uploadVideoRoute(app: FastifyInstance) {
     }
 
     const fileBaseName = path.basename(data.filename, extension)
-    const fileUploadName = `${fileBaseName}-${randomUUID}${extension}`
+    const fileUploadName = `${fileBaseName}-${randomUUID()}${extension}`
+    console.log(fileUploadName)
     const uploadDestination = path.resolve(__dirname, '../../tmp', fileUploadName)
 
     await pump(data.file, fs.createWriteStream(uploadDestination))
