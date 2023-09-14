@@ -10,3 +10,11 @@ Porjeto criado com vite
 Como instalar o [shadcn](https://ui.shadcn.com/docs/installation/vite)
 
 ## backend
+
+para rodar o backend 
+```pnpm i```
+```pnpm prisma init --datasource-provider sqlite```
+```pnpm prisma migrate dev```
+
+```pnpm prisma studio ```
+
