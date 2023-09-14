@@ -11,7 +11,7 @@ model Video {
   id           String   @id @default(uuid())
   nome         String
   path         String
-  transcrition String?
+  transcrition String? //transcription
   createdAt    DateTime @default(now())
 }
 
