@@ -1,4 +1,5 @@
 import { FastifyInstance } from 'fastify'
+import { createReadStream } from 'node:fs'
 import { prisma } from '../lib/prisma'
 import { z } from 'zod'
 
@@ -16,9 +17,18 @@ export async function createTranscriptionRoute(app: FastifyInstance) {
 
     const { prompt } = bodySchema.parse(req.body)
 
+    const video = await prisma.video.findUniqueOrThrow({
+      where: {
+        id: videoId
+      }
+    })
+
+    const videoPath = video.path
+
     return {
       videoId,
       prompt,
+      videoPath,
     }
   })
 }
