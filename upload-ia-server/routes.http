@@ -21,3 +21,14 @@ Content-Type: application/json
 {
   "prompt": "melhor desenvolvedor do mundo, foco, sucesso, não desistir"
 }
+
+###
+# @name completion
+POST http://localhost:3333/ai/complete
+Content-Type: application/json
+
+{
+  "videoId": "6426d9cf-b3ba-4bef-8a2c-19bc981c32d7",
+  "temperature": 0.5,
+  "template": "Gere um resmo sucinto da transcrição do vídeo informada a seguir: '''{transcrition}'''"
+}
