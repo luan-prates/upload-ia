@@ -5,7 +5,7 @@ import { openai } from '../lib/openai'
 import { z } from 'zod'
 
 export async function generateAICompletionRoute(app: FastifyInstance) {
-  app.post('/ai/complete', async (req) => {
+  app.post('/ai/complete', async (req, reply) => {
 
     const bodySchema = z.object({
       videoId: z.string().uuid(),
@@ -15,11 +15,28 @@ export async function generateAICompletionRoute(app: FastifyInstance) {
 
     const { videoId, template, temperature } = bodySchema.parse(req.body)
 
-    return{
-      videoId,
-      template,
-      temperature,
+
+    const video = await prisma.video.findUniqueOrThrow({
+      where: {
+        id: videoId,
+      }
+    })
+
+    if(!video.transcrition) {
+      return reply.status(400).send({ error: 'Video transcription was not generated yet.'})
     }
+
+    const promptMessage = template.replace('{transcrition}', video.transcrition)
+
+    const response = await openai.chat.completions.create({
+      model: 'gpt-3.5-turbo',
+      temperature,
+      messages: [
+        {role: 'user', content: promptMessage },
+      ],
+    })
+
+    return response
 
   })
 }

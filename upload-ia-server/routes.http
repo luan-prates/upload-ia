@@ -12,14 +12,25 @@ Content-Type: audio/mpeg
 
 < ./exemplo.mp3
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
+###
+# @name upload-gravando
+POST  http://localhost:3333/videos
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="gravando.mp3"
+Content-Type: audio/mpeg
+
+< ./gravando.mp3
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
 
 ###
 # @name transcription
-POST http://localhost:3333/videos/6426d9cf-b3ba-4bef-8a2c-19bc981c32d7/transcription
+POST http://localhost:3333/videos/af68773f-fec2-4628-a662-2abccf2bb36a/transcription
 Content-Type: application/json
 
 {
-  "prompt": "melhor desenvolvedor do mundo, foco, sucesso, não desistir"
+  "prompt": "Singularity University, Mountain View na Califórnia"
 }
 
 ###
@@ -28,7 +39,7 @@ POST http://localhost:3333/ai/complete
 Content-Type: application/json
 
 {
-  "videoId": "6426d9cf-b3ba-4bef-8a2c-19bc981c32d7",
+  "videoId": "af68773f-fec2-4628-a662-2abccf2bb36a",
   "temperature": 0.5,
   "template": "Gere um resmo sucinto da transcrição do vídeo informada a seguir: '''{transcrition}'''"
 }
