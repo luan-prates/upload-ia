@@ -5,7 +5,8 @@ import { Textarea } from './components/ui/textarea';
 import { Label } from './components/ui/label';
 import { Slider } from './components/ui/slider';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './components/ui/select';
-import { VideoInputForm } from './components/ui/video-input-form';
+import { VideoInputForm } from './components/video-input-form';
+import { PromptSelect } from './components/prompt-select';
 
 export function App() {
   return (
@@ -17,8 +18,6 @@ export function App() {
             Desenvolvido com ❤️ por Luan Prates
           </span>
           
-
-
           <Separator orientation='vertical' className="h-6" />
 
           <Button variant="outline">
@@ -30,15 +29,15 @@ export function App() {
       <main className='flex-1 p-6 flex gap-6 '>
         <div className='flex flex-col flex-1 gap-4'>
           <div className='grid grid-rows-2 gap-4 flex-1'>
-          <Textarea 
-            className='resize-none p-4 leading-relaxed'
-            placeholder='Inclua o prompt para a IA...'
-          />
-          <Textarea 
-            className='resize-none p-4 leading-relaxed'
-            placeholder='Resultado gerado pela IA...' 
-            readOnly 
-          />
+            <Textarea 
+              className='resize-none p-4 leading-relaxed'
+              placeholder='Inclua o prompt para a IA...'
+            />
+            <Textarea 
+              className='resize-none p-4 leading-relaxed'
+              placeholder='Resultado gerado pela IA...' 
+              readOnly 
+            />
           </div>
           <p className='text-sm text-muted-foreground'>Lembre-se: você pode 
           utilizar a variável <code className='text-orange-400'>{'{transcription}'}</code> no seu prompt para adicionar o 
@@ -53,17 +52,7 @@ export function App() {
           <form className='space-y-5'>
             <div className='space-y-2'>
               <Label>Prompt</Label>
-              <Select>
-                <SelectTrigger>
-                  <SelectValue placeholder='Selecione um prompt'>
-
-                  </SelectValue>
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value='titulo'>Titulo do YouTube</SelectItem>
-                  <SelectItem value='descricao'>Descrição do YouTube</SelectItem>
-                </SelectContent>
-              </Select>
+              <PromptSelect />
 
             </div>
             <div className='space-y-2'>

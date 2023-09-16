@@ -1,8 +1,8 @@
 import { FileVideo2, Upload } from "lucide-react";
-import { Separator } from '../ui/separator';
-import { Label } from '../ui/label';
-import { Textarea } from '../ui/textarea';
-import { Button } from '../ui/button';
+import { Separator } from './ui/separator';
+import { Label } from './ui/label';
+import { Textarea } from './ui/textarea';
+import { Button } from './ui/button';
 import { FormEvent, ChangeEvent, useMemo, useRef, useState } from "react";
 import { getFFmpeg } from "@/lib/ffmpeg";
 import { fetchFile } from '@ffmpeg/util'
