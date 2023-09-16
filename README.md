@@ -18,3 +18,5 @@ para rodar o backend
 
 ```pnpm prisma studio ```
 
+```pnpm prisma db seed```
+
